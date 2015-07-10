@@ -10,12 +10,13 @@ app.directive('quiz', function(quizFactory) {
 				scope.id = 0;
 				scope.quizOver = false;
 				scope.inProgress = true;
+				scope.score = {};
 				scope.getQuestion();
 			};
 
 			scope.reset = function() {
 				scope.inProgress = false;
-				scope.score = 0;
+				scope.score = {};
 			}
 
 			scope.getQuestion = function() {
@@ -24,6 +25,10 @@ app.directive('quiz', function(quizFactory) {
 					scope.question = q.question;
 					scope.options = q.options;
 					scope.answer = q.answer;
+					scope.group = q.group;
+					if (scope.score[q.group] == null) {
+						scope.score[q.group] = "";
+					}
 					scope.answerMode = true;
 				} else {
 					scope.quizOver = true;
@@ -36,9 +41,10 @@ app.directive('quiz', function(quizFactory) {
 				var ans = $('input[name=answer]:checked').val();
 
 				if(ans == scope.options[scope.answer]) {
-					scope.score++;
+					scope.score[scope.group] = scope.score[scope.group] + '1';
 					scope.correctAns = true;
 				} else {
+					scope.score[scope.group] = scope.score[scope.group] + '0';
 					scope.correctAns = false;
 				}
 
@@ -58,28 +64,33 @@ app.directive('quiz', function(quizFactory) {
 app.factory('quizFactory', function() {
 	var questions = [
 		{
-			question: "Which is the largest country in the world by population?",
-			options: ["India", "USA", "China", "Russia"],
+			question: 'Страна с наибольшим населением?',
+			options: ['Индия', 'США', 'Китай', 'Россия'],
+			group: '1',
 			answer: 2
 		},
 		{
-			question: "When did the second world war end?",
+			question: "В аком году закончилась вторая мировая война?",
 			options: ["1945", "1939", "1944", "1942"],
+			group: '1',
 			answer: 0
 		},
 		{
-			question: "Which was the first country to issue paper currency?",
-			options: ["USA", "France", "Italy", "China"],
+			question: "В какой стране появились первые бумажные деньги?",
+			options: ["США", "Франция", "Италия", "Китай"],
+			group: '2',
 			answer: 3
 		},
 		{
-			question: "Which city hosted the 1996 Summer Olympics?",
-			options: ["Atlanta", "Sydney", "Athens", "Beijing"],
+			question: "В каком городе проводились летние олимпийские игры 1996 года?",
+			options: ["Атланта", "Сидней", "Афины", "Пекин"],
+			group: '2',
 			answer: 0
 		},
 		{	
-			question: "Who invented telephone?",
-			options: ["Albert Einstein", "Alexander Graham Bell", "Isaac Newton", "Marie Curie"],
+			question: "Кто изобрел телефон?",
+			options: ["Альберт Эйнштейн", "Александр Грехем Белл", "Исаак Ньютон", "Мария Кюри"],
+			group: '2',
 			answer: 1
 		}
 	];
