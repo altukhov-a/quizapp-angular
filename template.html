@@ -9,26 +9,26 @@
 				</label>
 			</li>
 		</ul>
-		<button ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+		<button ng-click="checkAnswer()" ng-show="answerMode">Ответ</button>
 
 		<div ng-show="!answerMode">
-			<button ng-click="nextQuestion()" class="next-question">Next</button>
-			<span ng-show="correctAns">That is correct!</span>
-			<span ng-show="!correctAns">Sorry, that is an incorrect answer.</span>
+			<button ng-click="nextQuestion()" class="next-question">Дальше</button>
+			<span ng-show="correctAns">Верно!</span>
+			<span ng-show="!correctAns">Ответ не верный.</span>
 		</div>
 	</div>
 
 	<div ng-show="quizOver">
-		<h2>Quiz is over</h2>
-		<button ng-click="reset()">Play again</button>
+		<h2>Опрос окончен</h2>
+		<button ng-click="reset()">Начать заново</button>
 	</div>
 
 	<div id="score">
-		Score: {{score}}
+		Оценка: {{score}}
 	</div>
 </div>
 
 <div class="intro" ng-show="!inProgress">
-	<p>Welcome to the QuizApp</p>
-	<button id="startQuiz" ng-click="start()">Start the Quiz</button>
+	<p>Добро пожаловать на опрос</p>
+	<button id="startQuiz" ng-click="start()">Начать опрос</button>
 </div>

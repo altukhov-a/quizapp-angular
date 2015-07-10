@@ -1,4 +1,4 @@
-var app = angular.module('quizApp', []);
+var app = angular.module('quizApp', ['ngRoute', 'quizServices']);
 
 app.directive('quiz', function(quizFactory) {
 	return {
@@ -61,40 +61,9 @@ app.directive('quiz', function(quizFactory) {
 	}
 });
 
-app.factory('quizFactory', function() {
-	var questions = [
-		{
-			question: 'Страна с наибольшим населением?',
-			options: ['Индия', 'США', 'Китай', 'Россия'],
-			group: '1',
-			answer: 2
-		},
-		{
-			question: "В аком году закончилась вторая мировая война?",
-			options: ["1945", "1939", "1944", "1942"],
-			group: '1',
-			answer: 0
-		},
-		{
-			question: "В какой стране появились первые бумажные деньги?",
-			options: ["США", "Франция", "Италия", "Китай"],
-			group: '2',
-			answer: 3
-		},
-		{
-			question: "В каком городе проводились летние олимпийские игры 1996 года?",
-			options: ["Атланта", "Сидней", "Афины", "Пекин"],
-			group: '2',
-			answer: 0
-		},
-		{	
-			question: "Кто изобрел телефон?",
-			options: ["Альберт Эйнштейн", "Александр Грехем Белл", "Исаак Ньютон", "Мария Кюри"],
-			group: '2',
-			answer: 1
-		}
-	];
-
+app.factory('quizFactory', ['Questions', function(QuestionService) {
+	var questions = QuestionService.query();
+	console.log(questions);
 	return {
 		getQuestion: function(id) {
 			if(id < questions.length) {
@@ -104,4 +73,4 @@ app.factory('quizFactory', function() {
 			}
 		}
 	};
-});
+}]);
