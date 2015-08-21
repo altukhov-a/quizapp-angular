@@ -8,7 +8,7 @@ app.config(['$routeProvider',
         controller: 'QuizListCtrl'
       }).
       when('/register', {
-        templateUrl: 'from.html',
+        templateUrl: 'welcome.html',
         controller: 'UserFormCtrl'
       }).
       when('/quiz/:result', {

@@ -27,3 +27,18 @@
 		Оценка: {{score}}
 	</div>
 </div>
+<div class="intro" ng-show="!inProgress">
+	<p>Добро пожаловать на опрос</p>
+	<p>Заполните анкетный данные</p>
+	<div ng-controller="UserFormCtrl">
+		<form novalidate class="simple-form">
+			Имя: <input type="text" ng-model="user.name" /><br />
+			Фамилия: <input type="text" ng-model="user.secondname" /><br />
+			Отчество: <input type="text" ng-model="user.thirdname" /><br />
+			Профессия: <input type="text" ng-model="user.profession" /><br />
+			Интересы: <input type="text" ng-model="user.interest" /><br />
+			<button id="startQuiz" ng-click="start()">Начать опрос</button>
+		</form>
+		<pre>form = {{user | json}}</pre>
+	</div>
+</div>

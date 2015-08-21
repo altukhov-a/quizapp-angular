@@ -64,7 +64,7 @@ quizDirectives.directive('quiz', function(quizFactory) {
 	}
 });
 
-app.factory('quizFactory', ['Questions', function(QuestionService) {
+quizDirectives.factory('quizFactory', ['Questions', function(QuestionService) {
 	var questions = QuestionService.query();
 	console.log(questions);
 	return {

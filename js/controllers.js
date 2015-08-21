@@ -9,9 +9,16 @@ quizControllers.controller('QuizListCtrl', ['$scope',
   }
 ]);
 
-quizControllers.controller('UserFormCtrl', ['$scope', '$routeParams',
-  function($scope, $routeParams) {
-	  
+quizControllers.controller('UserFormCtrl', ['$scope', '$http',
+  function($scope, $http) {
+    $scope.user = {};
+
+    $scope.update = function(user) {
+      $scope.user = angular.copy(user);
+    };
+    $http.get('partials/quiz.html').success(function(data) {
+
+    });
   }
 ]);
 
