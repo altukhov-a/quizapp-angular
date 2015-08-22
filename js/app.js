@@ -1,21 +1,22 @@
-var app = angular.module('quizApp', ['ngRoute', 'quizServices', 'quizControllers', 'quizDirectives']);
+var app = angular.module('quizApp', ['ngRoute', 'quizServices', 'quizControllers']);
 
 app.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/quiz/:userId', {
-        templateUrl: 'template.html',
-        controller: 'QuizListCtrl'
-      }).
-      when('/register', {
-        templateUrl: 'welcome.html',
-        controller: 'UserFormCtrl'
-      }).
-      when('/quiz/:result', {
-        templateUrl: 'result.html',
-        controller: 'QuizResultCtrl'
-      }).
-      otherwise({
-        redirectTo: '/'
-      });
-  }]);
+    function ($routeProvider) {
+        //noinspection JSUnresolvedFunction
+        $routeProvider.
+            when('/', {
+                templateUrl: 'partials/welcome.html',
+                controller: 'UserFormCtrl'
+            }).
+            when('/quiz/:userId', {
+                templateUrl: 'partials/quiz.html',
+                controller: 'QuizListCtrl'
+            }).
+            when('/result/:userId', {
+                templateUrl: 'partials/result.html',
+                controller: 'QuizResultCtrl'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
+    }]);
