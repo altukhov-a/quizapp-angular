@@ -2,7 +2,6 @@ var app = angular.module('quizApp', ['ngRoute', 'quizServices', 'quizControllers
 
 app.config(['$routeProvider',
     function ($routeProvider) {
-        //noinspection JSUnresolvedFunction
         $routeProvider.
             when('/', {
                 templateUrl: 'partials/welcome.html',
@@ -15,6 +14,10 @@ app.config(['$routeProvider',
             when('/result/:userId', {
                 templateUrl: 'partials/result.html',
                 controller: 'QuizResultCtrl'
+            }).
+            when('/report', {
+                templateUrl: 'partials/report.html',
+                controller: 'QuizReportCtrl'
             }).
             otherwise({
                 redirectTo: '/'

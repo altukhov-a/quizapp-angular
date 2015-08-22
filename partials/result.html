@@ -1,4 +1,7 @@
 <div>
-    <h2>Опрос окончен. Ваш результат</h2>
-    <p>{{score}}</p>
+    <h2>Ваш результат</h2>
+    <canvas id="bar" class="chart chart-bar" data="data" legend="true" series="series" labels="labels"></canvas>
+    <div ng-hide="true">
+        <p>{{score}}</p>
+    </div>
 </div>
