@@ -7,11 +7,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/welcome.html',
                 controller: 'UserFormCtrl'
             }).
-            when('/quiz/:userId', {
+            when('/quiz', {
                 templateUrl: 'partials/quiz.html',
                 controller: 'QuizListCtrl'
             }).
-            when('/result/:userId', {
+            when('/result', {
                 templateUrl: 'partials/result.html',
                 controller: 'QuizResultCtrl'
             }).

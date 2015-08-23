@@ -1,24 +1,32 @@
-<div id="container"	class="container">
-	<div>
-		<h2 id="question">{{question}}</h2>
-		<ul id="options">
-			<li ng-repeat="option in options">
-				<label>
-					<input type="radio" name="answer" value="{{option}}">
-					{{option}}
-				</label>
-			</li>
-		</ul>
-		<button ng-click="checkAnswer()" ng-show="answerMode">Ответ</button>
+<div id="container" class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="question">{{question}}</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group" id="options">
+                <li class="list-group-item" ng-repeat="option in options">
+                    <label>
+                        <input type="radio" name="answer" value="{{option}}">
+                        {{option}}
+                    </label>
+                </li>
+            </ul>
+            <button ng-click="checkAnswer()" ng-show="answerMode" class="btn btn-default">Ответ</button>
 
-		<div ng-show="!answerMode">
-			<button ng-click="nextQuestion()" class="next-question">Дальше</button>
-			<span ng-show="correctAns">Верно!</span>
-			<span ng-show="!correctAns">Ответ не верный.</span>
-		</div>
-	</div>
+            <div ng-show="!answerMode">
+                <button ng-click="nextQuestion()" class="btn btn-primary">Дальше</button>
+                <div ng-show="correctAns" class="alert alert-success" role="alert">
+                    <span>Верно!</span>
+                </div>
+                <div ng-show="!correctAns" class="alert alert-danger" role="alert">
+                    <span>Ответ не верный. Правильный ответ <strong>{{ans}}</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div ng-hide="true" id="score">
-		Оценка: {{score}}
-	</div>
+    <div ng-hide="true" id="score">
+        Оценка: {{score}}
+    </div>
 </div>

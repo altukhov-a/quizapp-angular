@@ -1,47 +1,50 @@
 <div id="container" class="container">
-    <p>Добро пожаловать на опрос</p>
+    <h2>Добро пожаловать на опрос</h2>
 
-    <p>Заполните анкетный данные</p>
+    <h3>Заполните анкетный данные</h3>
 
-    <form class="form-horizontal" novalidate ng-submit="submit()" ng-controller="UserFormCtrl">
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="name">Имя:</label>
+    <div class="row">
+        <form class="form-horizontal" novalidate ng-submit="submit()" ng-controller="UserFormCtrl">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="name">Имя:</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="user.name" id="name" placeholder="Имя"/>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.name" id="name" placeholder="Имя"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="secondname">Фамилия:</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="secondname">Фамилия:</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="user.secondname" id="secondname"
-                       placeholder="Фамилия"/>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.secondname" id="secondname"
+                           placeholder="Фамилия"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="thirdname">Отчество:</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="thirdname">Отчество:</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="user.thirdname" id="thirdname"
-                       placeholder="Отчество"/>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.thirdname" id="thirdname"
+                           placeholder="Отчество"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="profession">Профессия:</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="profession">Профессия:</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="user.profession" id="profession"
-                       placeholder="Профессия"/>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="user.profession" id="profession"
+                           placeholder="Профессия"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="interest">Интересы:</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="interest">Интересы:</label>
 
-            <div class="col-sm-10">
-                <textarea class="form-control" rows="3" ng-model="user.interest" id="interest" placeholder="Интересы"/>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" ng-model="user.interest" id="interest"
+                              placeholder="Интересы"/>
+                </div>
             </div>
-        </div>
-        <button id="startQuiz" ng-click="update(user)">Начать опрос</button>
-    </form>
+            <button class="btn btn-primary" id="startQuiz" ng-click="update(user)">Начать опрос</button>
+        </form>
+    </div>
 </div>

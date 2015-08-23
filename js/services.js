@@ -29,13 +29,22 @@ quizServices.service('User',
                 user = value;
             },
             getFIO: function () {
+                if (user.thirdname == null) {
+                    return user.name + ' ' + user.secondname;
+                }
                 return user.name + ' ' + user.secondname + ' ' + user.thirdname;
             },
             getWork: function () {
-                return user.profession;
+                if(user.profession != null) {
+                    return user.profession;
+                }
+                return '';
             },
             getInterest: function () {
-                return user.interest;
+                if (user.interest != null) {
+                    return user.interest;
+                }
+                return '';
             }
         };
     });

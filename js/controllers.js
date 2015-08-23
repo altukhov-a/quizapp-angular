@@ -4,28 +4,24 @@
 
 var quizControllers = angular.module('quizControllers', ['quizServices', 'chart.js', 'ngSanitize', 'ngCsv', 'firebase']);
 
-quizControllers.controller('UserFormCtrl', ['$scope', '$location', '$firebaseArray', 'User',
-    function ($scope, $location, $firebaseArray, User) {
+quizControllers.controller('UserFormCtrl', ['$scope', '$location', 'User',
+    function ($scope, $location, User) {
         $scope.user = {};
-        var ref = new Firebase("https://quizweb.firebaseio.com/records");
-        var dbData = $firebaseArray(ref);
-
 
         $scope.update = function (user) {
             $scope.user = angular.copy(user);
             User.setUser($scope.user);
-            $scope.userId = user.name;
         };
 
         $scope.submit = function () {
-            $location.path('/quiz/' + $scope.userId);
+            $location.path('/quiz');
         };
     }
 ]);
 
-quizControllers.controller('QuizListCtrl', ['$scope', '$routeParams', '$location', '$firebaseArray', 'Questions', 'Score', 'User',
-    function ($scope, $routeParams, $location, $firebaseArray, Questions, Score, User) {
-        $scope.userId = $routeParams.userId;
+quizControllers.controller('QuizListCtrl', ['$scope', '$location', '$firebaseArray', 'Questions', 'Score', 'User',
+    function ($scope, $location, $firebaseArray, Questions, Score, User) {
+        $scope.answerMode = true;
         var questions = Questions.query().$promise.then(
             //success
             function (value) {
@@ -73,7 +69,7 @@ quizControllers.controller('QuizListCtrl', ['$scope', '$routeParams', '$location
                     Interest: User.getInterest(),
                     Result: $scope.result
                 });
-                $location.path('/result/' + $scope.userId);
+                $location.path('/result');
             }
         };
 
@@ -92,6 +88,7 @@ quizControllers.controller('QuizListCtrl', ['$scope', '$routeParams', '$location
                 $scope.score[$scope.group].answers.push(0);
                 $scope.score[$scope.group].no++;
                 $scope.correctAns = false;
+                $scope.ans = $scope.options[$scope.answer];
             }
 
             $scope.answerMode = false;
@@ -105,9 +102,8 @@ quizControllers.controller('QuizListCtrl', ['$scope', '$routeParams', '$location
     }
 ]);
 
-quizControllers.controller('QuizResultCtrl', ['$scope', '$routeParams', 'Score',
-    function ($scope, $routeParams, Score) {
-        $scope.userId = $routeParams.userId;
+quizControllers.controller('QuizResultCtrl', ['$scope', 'Score',
+    function ($scope, Score) {
         $scope.score = Score.getScore();
         $scope.labels = [];
         $scope.data = [[], []];
@@ -122,11 +118,6 @@ quizControllers.controller('QuizResultCtrl', ['$scope', '$routeParams', 'Score',
             '#46BFBD' // green
         ];
         $scope.series = ['Кол-во ошибочных ответов', 'Кол-во верных ответов'];
-
-        $scope.getArray = [{a: 1, b: 2}, {a: 3, b: 4}];
-        $scope.getHeader = function () {
-            return ["ФИО", "B"]
-        };
     }
 ]);
 
@@ -135,12 +126,6 @@ quizControllers.controller('QuizReportCtrl', ['$scope', '$firebaseArray',
     function ($scope, $firebaseArray) {
         var ref = new Firebase("https://quizweb.firebaseio.com/records");
         var dbData = $firebaseArray(ref);
-        dbData.$add({
-            FIO: 'Алтухова Арина',
-            Work: 'Пупс',
-            Interest: 'Кушать и спать',
-            Result: '1,1,1,1'
-        });
         dbData.$loaded()
             .then(function () {
                 console.info(dbData);
