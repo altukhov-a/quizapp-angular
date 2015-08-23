@@ -12,16 +12,43 @@ quizServices.factory('Questions', ['$resource',
         }]
 );
 
-quizServices.factory('Score', ['$resource',
-        function ($resource) {
-            var score;
-            return {
-                getScore: function () {
-                    return score;
-                },
-                setScore: function (value) {
-                    score = value;
-                }
-            };
-        }]
-);
+quizServices.service('User',
+    function () {
+        var user = {
+            name: '',
+            secondname: '',
+            thirdname: '',
+            profession: '',
+            interest: ''
+        };
+        return {
+            getUser: function () {
+                return user;
+            },
+            setUser: function (value) {
+                user = value;
+            },
+            getFIO: function () {
+                return user.name + ' ' + user.secondname + ' ' + user.thirdname;
+            },
+            getWork: function () {
+                return user.profession;
+            },
+            getInterest: function () {
+                return user.interest;
+            }
+        };
+    });
+
+quizServices.service('Score',
+    function () {
+        var score;
+        return {
+            getScore: function () {
+                return score;
+            },
+            setScore: function (value) {
+                score = value;
+            }
+        };
+    });

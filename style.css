@@ -23,13 +23,6 @@ button {
 	cursor: pointer;
 }
 
-
-.container {
-	width: 480px;
-	margin: 0 auto;
-	text-align: left;
-}
-
 #options {
 	margin: 10px 0;
 }
